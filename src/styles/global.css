@@ -1,0 +1,228 @@
+/* ── Fuentes locales (Fontsource) ── */
+@import '@fontsource/fraunces/400.css';
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/fraunces/700.css';
+@import '@fontsource/fraunces/400-italic.css';
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/400-italic.css';
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/great-vibes/400.css';
+@import '@fontsource/italiana/400.css';
+
+@import "tailwindcss";
+
+/* 
+   TOKENS DEL DESIGN SYSTEM
+   En v4 los tokens se definen dentro de @theme
+*/
+
+@theme {
+    /* ── Colores base de la paleta ── */
+    --color-terracotta: #C55B6D;
+    --color-terracotta-light: #D4707F;
+    --color-terracotta-dark: #A84658;
+
+    --color-olive: #6B6E3A;
+    --color-olive-light: #8A8E52;
+    --color-olive-dark: #4E5029;
+
+    --color-sage: #A8B090;
+
+    --color-gold: #C9A961;
+    --color-gold-light: #DFC38A;
+    --color-gold-dark: #A88940;
+
+    --color-cream: #F5EFE0;
+    --color-bone: #FBF9F4;
+    --color-dust: #E8B4B8;
+    --color-forest: #3A4A2F;
+
+    --color-dark-bg: #1E1A15;
+    --color-dark-alt: #2A231C;
+
+    /* ── Tokens semánticos (dinámicos con tema) ── */
+    --color-bg: var(--bg);
+    --color-bg-alt: var(--bg-alt);
+    --color-fg: var(--fg);
+    --color-fg-soft: var(--fg-soft);
+    --color-accent: var(--accent);
+    --color-border-soft: var(--border-soft);
+
+    /* ── Fuentes ── */
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-display: Fraunces, Georgia, serif;
+    --font-script: "Great Vibes", cursive;
+    --font-logo: Italiana, serif;
+    --font-sans: Inter, system-ui, sans-serif;
+
+    /* ── Espaciado personalizado ── */
+    --spacing-section: clamp(80px, 15vh, 160px);
+    --spacing-section-x: clamp(24px, 6vw, 100px);
+
+    /* ── Max widths ── */
+    --container-container: 1400px;
+    --container-prose-narrow: 640px;
+
+    /* ── Easings ── */
+    --ease-editorial: cubic-bezier(0.2, 0.9, 0.3, 1);
+
+    /* ── Animaciones ── */
+    --animate-ken-burns: kenBurns 20s ease-out infinite alternate;
+    --animate-fade-up: fadeUp 1s var(--ease-editorial) forwards;
+    --animate-scroll-hint: scrollHint 2.2s ease-in-out infinite;
+
+    @keyframes kenBurns {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(1.08);
+        }
+    }
+
+    @keyframes fadeUp {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes scrollHint {
+
+        0%,
+        100% {
+            transform: translate(-50%, 0);
+            opacity: 0.5;
+        }
+
+        50% {
+            transform: translate(-50%, 8px);
+            opacity: 1;
+        }
+    }
+}
+
+/* TEMAS (Light / Dark) */
+:root {
+    /* Tema claro (default) */
+    --bg: #FBF9F4;
+    --bg-alt: #F5EFE0;
+    --fg: #2C2620;
+    --fg-soft: rgba(44, 38, 32, 0.66);
+    --accent: #C55B6D;
+    --border-soft: rgba(44, 38, 32, 0.12);
+}
+
+:root[data-theme='dark'] {
+    --bg: #1E1A15;
+    --bg-alt: #2A231C;
+    --fg: #F5EFE0;
+    --fg-soft: rgba(245, 239, 224, 0.66);
+    --accent: #D4707F;
+    --border-soft: rgba(245, 239, 224, 0.15);
+}
+
+/* BASE STYLES */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font-serif);
+        font-weight: 400;
+        line-height: 1.6;
+        transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* Grain texture sutil global */
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 200;
+        opacity: 0.04;
+        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    :root[data-theme='dark'] body::before {
+        mix-blend-mode: screen;
+        opacity: 0.06;
+    }
+
+    ::selection {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+
+        html {
+            scroll-behavior: auto;
+        }
+    }
+}
+
+/* COMPONENT CLASSES (helpers reutilizables) */
+@layer components {
+    .container-narrow {
+        max-width: var(--container-container);
+        margin-inline: auto;
+        padding-inline: var(--spacing-section-x);
+    }
+
+    .eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--fg-soft);
+    }
+
+    .heading-script {
+        font-family: var(--font-script);
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        line-height: 1;
+        color: var(--color-gold);
+    }
+
+    .heading-display {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--fg);
+    }
+
+    .heading-display-xl {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+    }
+}
