@@ -1,0 +1,50 @@
+---
+/**
+ * LanguageToggle - Cambia entre ES/EN
+ * Astro maneja el i18n con rutas: /  (ES) y /en (EN)
+ * Este componente simplemente cambia la URL
+*/
+
+import { getLangFromUrl, getRouteForLang } from "../../i18n/utils";
+
+const currentLang = getLangFromUrl(Astro.url);
+const otherLang = currentLang === 'es' ? 'en' : 'es';
+const otherRoute = getRouteForLang(Astro.url.pathname, otherLang);
+---
+
+<a href={otherRoute} class="lang-toggle" aria-label={`Switch to ${otherLang.toUpperCase()}`}>
+    <span class={currentLang === 'es' ? 'active' : ''}>ES</span>
+    <span class="divider">·</span>
+    <span class={currentLang === 'en' ? 'active' : ''}>EN</span>
+</a>
+
+<style>
+    .lang-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border: 1px solid var(--border-soft);
+        border-radius: 100px;
+        font-family: var(--font-sans);
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        color: var(--fg-soft);
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .lang-toggle:hover {
+        border-color: var(--accent);
+        color: var(--fg);
+    }
+
+    .lang-toggle .active {
+        color: var(--fg);
+        font-weight: 500;
+    }
+
+    .lang-toggle .divider {
+        opacity: 0.4;
+    }
+</style>

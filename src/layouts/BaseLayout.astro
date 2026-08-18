@@ -1,0 +1,85 @@
+---
+/**
+ * BaseLayout · Layout principal del sitio
+ *
+ * Incluye:
+ * - Meta tags SEO
+ * - Open Graph / Twitter cards
+ * - Import de estilos globales
+ * - Nav y Footer globales
+ * - Detección de tema del sistema
+ */
+
+import '../styles/global.css';
+import Nav from '../components/ui/Nav.astro';
+import Footer from '../components/ui/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getSEO } from '../lib/seo';
+
+interface Props {
+    title?: string;
+    description?: string;
+    ogImage?: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const seo = getSEO(lang);
+
+const {
+    title = seo.title,
+    description = seo.description,
+    ogImage = seo.ogImage,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- SEO -->
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalURL} />
+        {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site)} />}
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        {ogImage && <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />}
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+        <!-- Preload de imagen hero (LCP optimization) -->
+        <link rel="preload" as="image" href="/images/hero-flowers.jpg" />
+
+        <!-- Script que corre ANTES del render para evitar flash de tema -->
+        <script is:inline>
+        (function () {
+            const saved = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved ?? (systemDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+        </script>
+    </head>
+    <body>
+        <Nav />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>

@@ -1,0 +1,100 @@
+---
+/**
+ * Nav - Barra superior
+ * - Brand a la izquierda (letter-spacing amplio, uppercase)
+ * - Logo pequeño y toggles a la derecha
+ * - Fondo transparente que se vuelve semi-translúcido con blur al scroll
+ */
+
+import LanguageToggle from './LanguageToggle.astro';
+import ThemeToggle from './ThemeToggle';
+import { getLangFromUrl, useTranslations,  } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<header id="nav" class="nav">
+    <div class="nav-inner">
+        <a href={lang === 'es' ? '/' : '/en'} class="nav-brand">
+            {t('nav.brand')}
+        </a>
+
+        <div class="nav-actions">
+            <LanguageToggle />
+            <ThemeToggle client:load />
+        </div>
+    </div>
+</header>
+
+<style>
+    .nav {
+        position: fixed;
+        inset: 0 0 auto 0;
+        transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+        border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+        background: color-mix(in srgb, var(--bg) 80%, transparent);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom-color: var(--border-soft);
+    }
+
+    .nav-inner {
+        max-width: var(--container-container);
+        margin-inline: auto;
+        padding: 20px var(--spacing-section-x);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .nav-brand {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        color: var(--fg);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .nav-brand:hover
+    {
+        color: var(--accent);
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    @media (max-width: 640) {
+        .nav-inner {
+            padding: 14px 20px;
+        }
+    }
+</style>
+
+<script>
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+        if (!nav)
+        {
+            return;
+        }
+
+        if (window.scrollY > 20)
+        {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+</script>

@@ -1,4 +1,4 @@
-export type theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 
 export interface SectionProps {
     id?: string;
