@@ -1,17 +1,54 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Reveal from '../components/animations/Reveal';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <!-- Sección de test -->
+  <section style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; padding: 100px 20px;">
+
+    <Reveal client:load>
+      <h1 class="heading-display-xl">
+        Fase 2 lista <span style="color: var(--accent)">"ícono"</span>
+      </h1>
+    </Reveal>
+
+    <Reveal client:load delay={0.2}>
+      <p style="font-family: var(--font-script); font-size: 3rem; color: var(--color-gold);">
+        Para Siempre MX
+      </p>
+    </Reveal>
+
+    <Reveal client:load delay={0.4}>
+      <p style="max-width: 500px; text-align: center; font-size: 1.1rem; color: var(--fg-soft);">
+        LISTO : Toggle para dark y light funcional
+      </p>
+      <p style="max-width: 500px; text-align: center; font-size: 1.1rem; color: var(--fg-soft);">
+		pendiente:
+	  </p>
+	  <ul style="max-width: 500px; text-align: center; font-size: 1.1rem; color: var(--fg-soft);">
+		<li>cambio de idioma</li>
+		<li>página 404</li>
+		<li>MORE POTATO STUFF</li>
+	  </ul>
+    </Reveal>
+
+    <Reveal client:load delay={0.6}>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+      </div>
+    </Reveal>
+  </section>
+
+  <!-- Segunda sección para probar reveal on scroll -->
+  <section style="min-height: 100vh; padding: 100px 20px; background: var(--bg-alt); display: flex; align-items: center; justify-content: center;">
+    <Reveal client:load>
+      <h2 class="heading-script" style="text-align: center;">
+        Reveal on scroll funciona ✓
+      </h2>
+    </Reveal>
+  </section>
+</BaseLayout>

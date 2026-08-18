@@ -1,0 +1,108 @@
+---
+/**
+ * Button · Botón reutilizable
+ *
+ * Variantes:
+ * - primary -> terracotta sólido
+ * - secondary -> olive sólido
+ * - outline -> transparente con borde dorado
+*/
+
+interface Props {
+    href?: string;
+    variant?: 'primary' | 'secondary' | 'outline';
+    external?: string;
+    class?: string;
+}
+
+const {
+    href,
+    variant = 'primary',
+    external = false,
+    class: className = ''
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer'} : {};
+---
+
+<Tag href={href} class:list={['btn', `btn-${variant}`, className]} {...externalProps}>
+    <span class="btn-content">
+        <slot />
+    </span>
+</Tag>
+
+<style>
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 32px;
+        border: 1px solid transparent;
+        border-radius: 100px;
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.4s var(--ease-editorial);
+        position: relative;
+        overflow: hidden;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-content {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Primary — terracotta */
+    .btn-primary {
+        background: var(--color-terracotta);
+        color: #fff;
+        border-color: var(--color-terracotta);
+    }
+
+    .btn-primary:hover {
+        background: var(--color-terracotta-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(197, 91, 109, 0.25);
+    }
+
+    /* Secondary — olive */
+    .btn-secondary {
+        background: var(--color-olive);
+        color: #fff;
+        border-color: var(--color-olive);
+    }
+
+    .btn-secondary:hover {
+        background: var(--color-olive-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(107, 110, 58, 0.25);
+    }
+
+    /* Outline — dorado */
+    .btn-outline {
+        background: transparent;
+        color: var(--color-gold-dark);
+        border-color: var(--color-gold);
+    }
+
+    .btn-outline:hover {
+        background: var(--color-gold);
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 640px) {
+        .btn {
+            padding: 14px 24px;
+            font-size: 0.8rem;
+        }
+    }
+</style>

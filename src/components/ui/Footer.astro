@@ -1,0 +1,70 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+    <div class="footer-line"></div>
+    <div class="footer-inner">
+        <div class="footer-brand">PARA SIEMPRE MX</div>
+        <div class="footer-tag">{t('footer.tag')}</div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        padding: 60px var(--spacing-section-x) 40px;
+        background: var(--bg);
+    }
+
+    .footer-line {
+        max-width: var(--container-container);
+        margin: 0 auto 40px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    }
+
+    .footer-inner {
+        max-width: var(--container-container);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    .footer-brand {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        color: var(--fg);
+    }
+
+    .footer-tag {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 0.9rem;
+        color: var(--fg-soft);
+    }
+
+    .footer-credits {
+        font-family: var(--font-sans);
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--fg-soft);
+        opacity: 0.7;
+    }
+
+    @media (max-width: 640px) {
+        .footer-inner {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+</style>
