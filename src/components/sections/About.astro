@@ -1,0 +1,90 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Reveal from "../animations/Reveal";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="about" id="about">
+    <div class="about-inner">
+        <Reveal client:visible>
+            <div class="heart" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21s-7-4.5-9.5-9C.5 8 3 3 8 3c2 0 3.5 1 4 2.5C12.5 4 14 3 16 3c5 0 7.5 5 5.5 9-2.5 4.5-9.5 9-9.5 9z"/>
+                </svg>
+            </div>
+        </Reveal>
+
+        <Reveal client:visible delay={0.2}>
+            <h2 class="about-title">{t('quees.title')}</h2>
+        </Reveal>  
+        
+        <div class="about-text">
+            <Reveal client:visible delay={0.3}>
+                <p>{t('quees.p1')}</p>
+            </Reveal>
+            <Reveal client:visible delay={0.4}>
+                <p>{t('quees.p2')}</p>
+            </Reveal>
+            <Reveal client:visible delay={0.5}>
+                <p>{t('quees.p3')}</p>
+            </Reveal>
+            <Reveal client:visible delay={0.6}>
+                <p>{t('quees.p4')}</p>
+            </Reveal>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about {
+        padding: var(--spacing-section) var(--spacing-section-x);
+        background: var(--bg);
+    }
+
+    .about-inner {
+        max-width: 780px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .heart {
+        color: var(--color-gold);
+        width: 28px;
+        height: 28px;
+        margin: 0 auto 32px;
+    }
+
+    .about-title {
+        font-family: var(--font-script);
+        font-size: clamp(2.5rem, 7vw, 5rem);
+        line-height: 1;
+        color: var(--fg);
+        margin-bottom: 48px;
+        font-weight: 400;
+    }
+
+    .about-text {
+        text-align: left;
+    }
+
+    .about-text p {
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 1.5vw, 1.15rem);
+        line-height: 1.75;
+        color: var(--fg);
+        margin-bottom: 16px;
+        text-align: justify;
+    }
+
+    .about-text p:last-child {
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 640px) {
+        .about-text p {
+            text-align: left;
+        }
+    }
+</style>
