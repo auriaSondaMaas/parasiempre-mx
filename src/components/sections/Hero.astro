@@ -1,0 +1,128 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import KenBurns from "../animations/KenBurns";
+import ScrollIndicator from "../ui/ScrollIndicator.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Placeholder de Unsplash con mood floral rosa
+const heroImage = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80';
+---
+
+<section class="hero" id="hero">
+    <div class="hero-bg">
+        <KenBurns client:load src={heroImage} alt="Para Siempre MX" duration={25} className="hero-img"/>
+        <div class="hero-overlay"></div>
+    </div>
+
+    <!-- contenido -->
+    <div class="hero-content">
+        <h1 class="hero-logo">
+            <span class="line-1">Para</span>
+            <span class="line-2">Siempre<sup>mx</sup></span>
+        </h1>
+        <p class="hero-subtitle">{t('hero.subtitle')}</p>
+    </div>
+    <ScrollIndicator />
+</section>
+
+<style>
+    .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 600px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .hero-bg :global(.hero-img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(2px);
+    }
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,rgba(0, 0, 0, 0.15) 0%,rgba(0, 0, 0, 0.05) 40%,rgba(0, 0, 0, 0.35) 100%);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        padding: 0 24px;
+    }
+
+    .hero-logo {
+        font-family: var(--font-logo);
+        font-size: clamp(4rem, 14vw, 10rem);
+        line-height: 0.95;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        text-shadow: 0 6px 40px rgba(0, 0, 0, 0.3);
+        margin: 0;
+        opacity: 0;
+        animation: heroLogoIn 2s var(--ease-editorial) 0.6s forwards;
+    }
+
+    .hero-logo .line-1,
+    .hero-logo .line-2 {
+        display: block;
+    }
+
+    .hero-logo .line-2 {
+        margin-top: -0.15em;
+        margin-left: 0.2em;
+    }
+
+    .hero-logo sup {
+        font-size: 0.3em;
+        letter-spacing: 0.1em;
+        vertical-align: super;
+        margin-left: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+        margin-top: 20px;
+        font-family: var(--font-sans);
+        font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+        letter-spacing: 0.5em;
+        text-transform: lowercase;
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        animation: fadeUp 1.2s var(--ease-editorial) 1.6s forwards;
+    }
+
+    @keyframes heroLogoIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.95);
+            letter-spacing: 0.15em;
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+            letter-spacing: 0.02em;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .hero-subtitle {
+            letter-spacing: 0.3em;
+        }
+    }
+</style>

@@ -1,0 +1,124 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Reveal from "../animations/Reveal";
+import Parallax from "../animations/Parallax";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const designImage = 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80';
+---
+
+<section class="design" id="design">
+    <div class="design-inner">
+        <div class="design-text">
+            <Reveal client:visible>
+                <p>{t('design.p1')}</p>
+            </Reveal>
+
+            <Reveal client:visible delay={0.15}>
+                <p>{t('design.p2')}</p>
+            </Reveal>
+
+            <Reveal client:visible delay={0.3}>
+                <p>{t('design.p3')}</p>
+            </Reveal>
+        </div>
+
+         <div class="design-visual">
+            <Parallax client:visible offset={60}>
+                <div class="design-img-wrap">
+                    <img src={designImage} alt="Diseño de boda" loading="lazy" />
+                </div>
+            </Parallax>
+        </div>
+    </div>
+
+    <div class="design-footer">
+        <div class="footer-left">STUDIO<br />PARASIEMPRE</div>
+        <div class="footer-right">WEDDING &<br />EVENT PLANNING</div>
+    </div>
+</section>
+
+<style>
+    .design {
+        padding: var(--spacing-section) var(--spacing-section-x);
+        background: var(--bg);
+        position: relative;
+    }
+
+    .design-inner {
+        max-width: var(--container-container);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 6vw, 100px);
+        align-items: center;
+    }
+
+    .design-text {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .design-text p {
+        font-family: var(--font-serif);
+        font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+        line-height: 1.75;
+        color: var(--fg);
+        text-align: justify;
+    }
+
+    .design-visual {
+        display: flex;
+        justify-content: center;
+    }
+
+    .design-img-wrap {
+        width: 100%;
+        max-width: 500px;
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        border-radius: 4px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .design-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1s var(--ease-editorial);
+    }
+
+    .design-img-wrap:hover img {
+        transform: scale(1.03);
+    }
+
+    .design-footer {
+        max-width: var(--container-container);
+        margin: 60px auto 0;
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-sans);
+        font-size: 0.65rem;
+        letter-spacing: 0.35em;
+        color: var(--color-gold-dark);
+        line-height: 1.8;
+    }
+
+    .footer-right {
+        text-align: right;
+    }
+
+    @media (max-width: 900px) {
+        .design-inner {
+            grid-template-columns: 1fr;
+        }
+
+        .design-text p {
+            text-align: left;
+        }
+    }
+
+</style>

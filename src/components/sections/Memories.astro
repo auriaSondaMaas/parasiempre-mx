@@ -1,0 +1,78 @@
+---
+ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+ import Reveal from "../animations/Reveal";
+
+ const lang = getLangFromUrl(Astro.url);
+ const t = useTranslations(lang);
+
+ const bgImage = 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1920&q=80';
+---
+
+<section class="memories" id="memories" style={`background-image: url(${bgImage})`}>
+    <div class="memories-overlay"></div>
+
+    <div class="memories-content">
+        <Reveal client:visible>
+            <p class="memories-top">{t('memories.top')}</p>
+        </Reveal>
+
+        <Reveal client:visible delay={0.3}>
+            <h3 class="memories-bottom">{t('memories.bottom')}</h3>
+        </Reveal>
+    </div>
+</section>
+
+<style>
+    .memories {
+        min-height: 90vh;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-section) var(--spacing-section-x);
+        position: relative;
+    }
+
+    .memories-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.3) 50%,rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    .memories-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        max-width: 800px;
+    }
+
+    .memories-top {
+        font-family: var(--font-serif);
+        font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+        line-height: 1.5;
+        color: var(--color-dust);
+        margin-bottom: 24px;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .memories-bottom {
+        font-family: var(--font-script);
+        font-size: clamp(2.5rem, 7vw, 5rem);
+        line-height: 1;
+        color: var(--color-gold);
+        font-weight: 400;
+        margin: 0;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* En mobile deshabilitamos parallax para performance */
+    @media (max-width: 900px) {
+        .memories {
+            background-attachment: scroll;
+        }
+    }
+
+</style>

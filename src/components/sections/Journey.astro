@@ -1,0 +1,167 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Reveal from "../animations/Reveal";
+import Parallax from "../animations/Parallax";
+import type { delay } from "framer-motion";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Placeholders B&N estilo editorial
+const images = [
+    { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80&sat=-100', alt: 'Wedding detail 1' },
+    { src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80&sat=-100', alt: 'Wedding detail 2' },
+    { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80&sat=-100', alt: 'Wedding rings' },
+    { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80&sat=-100', alt: 'Bride hands' },
+];
+---
+
+<section class="journey" id="journey">
+    <div class="journey">
+        <Reveal client:visible>
+            <h2 class="joourney-tittle">{t('journey.title')}</h2>
+        </Reveal>
+
+        <div class="journey-grid">
+            {images.map((img, i) => (
+                <Reveal client:visible delay={i*0.15}>
+                    <Parallax client:visible offset={30+i*10}>
+                        <div class="journey-img-wrap">
+                            <img src={img.src} alt={img.alt} loading="lazy" />
+                        </div>
+                    </Parallax>
+                </Reveal>
+            ))}
+        </div>
+
+        <div class="journey-cols">
+            <Reveal client:visible delay={0.1}>
+                <p>{t('journey.col1')}</p>
+            </Reveal>
+            <Reveal client:visible delay={0.25}>
+                <p>{t('journey.col2')}</p>
+            </Reveal>
+            <Reveal client:visible delay={0.4}>
+                <p>{t('journey.col3')}</p>
+            </Reveal>
+        </div>
+
+        <div class="journey-footer">
+            <div class="journey-num">02</div>
+            <div class="journey-tag">{t('journey.tag')}</div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .journey {
+        padding: var(--spacing-section) var(--spacing-section-x);
+        background: var(--bg-alt);
+    }
+
+    .journey-inner {
+        max-width: var(--container-container);
+        margin: 0 auto;
+    }
+
+    .journey-title {
+        font-family: var(--font-script);
+        font-size: clamp(3rem, 8vw, 6rem);
+        color: var(--color-gold);
+        line-height: 1;
+        margin-bottom: 80px;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        padding-left: clamp(0px, 5vw, 60px);
+    }
+
+    .journey-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 80px;
+    }
+
+    .journey-img-wrap {
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        border-radius: 4px;
+    }
+
+    .journey-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1);
+        transition: transform 0.8s var(--ease-editorial);
+    }
+
+    .journey-img-wrap:hover img {
+        transform: scale(1.04);
+    }
+
+    .journey-cols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        max-width: 1100px;
+        margin: 0 auto 80px;
+    }
+
+    .journey-cols p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: var(--fg);
+        text-align: justify;
+    }
+
+    .journey-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding-top: 40px;
+        border-top: 1px solid var(--border-soft);
+    }
+
+    .journey-num {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--fg-soft);
+        letter-spacing: 0.3em;
+    }
+
+    .journey-tag {
+        font-family: var(--font-sans);
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        color: var(--color-gold-dark);
+        text-align: right;
+    }
+
+    @media (max-width: 900px) {
+        .journey-grid { 
+            grid-template-columns: repeat(2, 1fr); 
+        }
+
+        .journey-cols { 
+            grid-template-columns: 1fr; gap: 24px; 
+        }
+    }
+
+    @media (max-width: 640px) {
+        .journey-grid { 
+            grid-template-columns: 1fr; gap: 12px; 
+        }
+
+        .journey-title { 
+            padding-left: 0; text-align: center; 
+        }
+
+        .journey-cols p { 
+            text-align: left; 
+        }
+    }
+</style>
