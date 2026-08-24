@@ -1,0 +1,129 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Reveal from '../animations/Reveal';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Todas las líneas de cada columna
+const col1Keys = [
+  'manifiesto.col1.l1',
+  'manifiesto.col1.l2',
+  'manifiesto.col1.l3',
+  'manifiesto.col1.l4',
+  'manifiesto.col1.l5',
+] as const;
+
+const col2Keys = [
+  'manifiesto.col2.l1',
+  'manifiesto.col2.l2',
+  'manifiesto.col2.l3',
+  'manifiesto.col2.l4',
+  'manifiesto.col2.l5',
+  'manifiesto.col2.l6',
+  'manifiesto.col2.l7',
+  'manifiesto.col2.l8',
+  'manifiesto.col2.l9',
+  'manifiesto.col2.l10',
+] as const;
+---
+
+<section class="manifiesto" id="manifiesto">
+    <!-- Textura kraft encima del color -->
+    <div class="manifiesto-texture" aria-hidden="true"></div>
+
+    <div class="manifiesto-inner">
+        <Reveal client:visible>
+            <h2 class="manifiesto-title">{t('manifiesto.title')}</h2>
+        </Reveal>
+
+        <div class="manifiesto-grid">
+            <div class="manifiesto-col">
+                {col1Keys.map((key, i) => (
+                    <Reveal client:visible delay={0.1 + i * 0.08}>
+                        <p>{t(key)}</p>
+                    </Reveal>
+                ))}
+            </div>
+            <div class="manifiesto-col">
+                {col2Keys.map((key, i) => (
+                    <Reveal client:visible delay={0.2 + i * 0.06}>
+                        <p class:list={[i === col2Keys.length - 1 ? 'emphasis' : '']}>
+                            {t(key)}
+                        </p>
+                    </Reveal>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .manifiesto {
+        padding: var(--spacing-section) var(--spacing-section-x);
+        background: var(--color-olive);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Textura de papel kraft usando gradiente + noise */
+    .manifiesto-texture {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.15;
+        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='paper'><feTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23paper)'/></svg>");
+    }
+
+    .manifiesto-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .manifiesto-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 700;
+        color: var(--color-cream);
+        letter-spacing: 0.02em;
+        margin: 0 0 80px;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .manifiesto-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 6vw, 80px);
+        text-align: left;
+    }
+
+    .manifiesto-col p {
+        font-family: var(--font-serif);
+        font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+        line-height: 1.55;
+        color: var(--color-cream);
+        margin: 0 0 12px;
+    }
+
+    .manifiesto-col p.emphasis {
+        font-style: italic;
+        font-weight: 500;
+        color: #fff;
+        margin-top: 8px;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 900px) {
+        .manifiesto-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        .manifiesto-title {
+            margin-bottom: 40px;
+        }
+  }
+</style>

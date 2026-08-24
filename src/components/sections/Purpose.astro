@@ -1,0 +1,77 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Reveal from "../animations/Reveal";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Placeholder con mood dorado/rústico
+const bgImage = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80';
+---
+
+<section class="purpose" id="purpose" style={`background-image: url(${bgImage})`}>
+    <div class="purpose-overlay"></div>
+
+    <div class="purpose-content">
+        <Reveal client:visible>
+            <h2 class="purpose-title">{t('purpose.title')}</h2>
+        </Reveal>
+
+        <Reveal client:visible delay={0.3}>
+            <p class="purpose-text">{t('purpose.text')}</p>
+        </Reveal>
+    </div>
+</section>
+
+<style>
+    .purpose {
+        min-height: 90vh;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-section) var(--spacing-section-x);
+        position: relative;
+    }
+
+    .purpose-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,rgba(0, 0, 0, 0.55) 0%,rgba(0, 0, 0, 0.45) 50%,rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    .purpose-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        max-width: 700px;
+    }
+
+    .purpose-title {
+        font-family: var(--font-script);
+        font-size: clamp(3rem, 7vw, 5rem);
+        line-height: 1;
+        color: #fff;
+        font-weight: 400;
+        margin: 0 0 32px;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .purpose-text {
+       font-family: var(--font-serif);
+        font-size: clamp(1.1rem, 2vw, 1.35rem);
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.95);
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        margin: 0;
+    }
+
+    @media (max-width: 900px) {
+        .purpose {
+            background-attachment: scroll;
+        }
+    }
+</style>

@@ -1,0 +1,161 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Reveal from "../animations/Reveal";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="promise" id="promise">
+    <div class="promise-inner">
+        <div class="promise-text">
+            <Reveal client:visible>
+                <h2 class="promise-title">{t('promesa.title')}</h2>
+            </Reveal>
+
+            <Reveal client:visible delay={0.15}>
+                <p>{t('promesa.p1')}</p>
+            </Reveal>
+
+            <Reveal client:visible delay={0.3}>
+                <p>{t('promesa.p2')}</p>
+            </Reveal>
+
+            <Reveal client:visible delay={0.45}>
+                <p>{t('promesa.p3')}</p>
+            </Reveal>
+
+            <Reveal client:visible delay={0.6}>
+                <p class="promise-emphasis">{t('promesa.p4')}</p>
+            </Reveal>
+        </div>
+
+        <!-- Ilustración SVG de torre de copas de champagne -->
+        <div class="promise-illustration" aria-hidden="true">
+            <svg viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Botella inclinada arriba -->
+                <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                <path d="M240 20 Q245 25 250 30 L280 60 Q285 65 280 70 L260 90 Q255 95 250 90 L220 60 Q215 55 220 50 Z" />
+
+                <!-- Chorro cayendo -->
+                <path d="M250 90 Q245 130 200 160" stroke-dasharray="2 3" opacity="0.6" />
+
+                <!-- Copa 1 (top) -->
+                <path d="M170 160 Q170 195 200 200 Q230 195 230 160" />
+                <line x1="200" y1="200" x2="200" y2="230" />
+                <ellipse cx="200" cy="234" rx="18" ry="3" />
+
+                <!-- Copa 2 y 3 (medio) -->
+                <path d="M120 240 Q120 275 150 280 Q180 275 180 240" />
+                <line x1="150" y1="280" x2="150" y2="310" />
+                <ellipse cx="150" cy="314" rx="18" ry="3" />
+
+                <path d="M220 240 Q220 275 250 280 Q280 275 280 240" />
+                <line x1="250" y1="280" x2="250" y2="310" />
+                <ellipse cx="250" cy="314" rx="18" ry="3" />
+
+                <!-- Copas base (3 abajo) -->
+                <path d="M70 320 Q70 355 100 360 Q130 355 130 320" />
+                <line x1="100" y1="360" x2="100" y2="390" />
+                <ellipse cx="100" cy="394" rx="18" ry="3" />
+
+                <path d="M170 320 Q170 355 200 360 Q230 355 230 320" />
+                <line x1="200" y1="360" x2="200" y2="390" />
+                <ellipse cx="200" cy="394" rx="18" ry="3" />
+
+                <path d="M270 320 Q270 355 300 360" />
+
+                <!-- Gotas -->
+                <circle cx="205" cy="215" r="1.5" fill="currentColor" opacity="0.5" />
+                <circle cx="155" cy="295" r="1.5" fill="currentColor" opacity="0.5" />
+                <circle cx="252" cy="298" r="1.5" fill="currentColor" opacity="0.5" />
+                <circle cx="103" cy="378" r="1.5" fill="currentColor" opacity="0.5" />
+                </g>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<style>
+    .promise {
+        padding: var(--spacing-section) var(--spacing-section-x);
+        background: var(--bg-alt);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .promise-inner {
+        max-width: var(--container-container);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .promise-text {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .promise-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 700;
+        line-height: 1.05;
+        color: var(--color-olive-dark);
+        letter-spacing: -0.02em;
+        margin: 0 0 20px;
+    }
+
+    :root[data-theme='dark'] .promise-title {
+        color: var(--color-olive-light);
+    }
+
+    .promise-text p {
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 1.5vw, 1.15rem);
+        line-height: 1.7;
+        color: var(--fg);
+        margin: 0;
+    }
+
+    .promise-emphasis {
+        font-style: italic;
+        font-weight: 500;
+        color: var(--color-olive-dark) !important;
+        margin-top: 20px !important;
+    }
+
+    :root[data-theme='dark'] .promise-emphasis {
+        color: var(--color-olive-light) !important;
+    }
+
+    .promise-illustration {
+        display: flex;
+        justify-content: center;
+        color: var(--color-gold-dark);
+    }
+
+    .promise-illustration svg {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        opacity: 0.7;
+    }
+
+    @media (max-width: 900px) {
+        .promise-inner {
+            grid-template-columns: 1fr;
+        }
+        .promise-illustration {
+            order: -1;
+            opacity: 0.5;
+        }
+        .promise-illustration svg {
+            max-width: 200px;
+        }
+    }
+
+</style>
