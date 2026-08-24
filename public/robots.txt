@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://parasiemprewp.com/sitemap-index.xml

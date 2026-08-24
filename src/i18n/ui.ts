@@ -106,7 +106,7 @@ export const ui = {
     'hero.scroll': 'Scroll',
 
     // What is?
-    'quees.title': 'What is forever?',
+    'quees.title': 'What is Para Siempre?',
     'quees.p1': 'At Para Siempre MX we believe a wedding doesn\'t start on the day of the "I do". It begins the moment two people decide to build a life together.',
     'quees.p2': 'Every decision, every emotion, every detail and every moment lived during the planning is part of a story that deserves to be enjoyed with the same intensity as the big day.',
     'quees.p3': 'We are here to accompany that journey, to turn uncertainty into peace, stress into excitement and pending tasks into the freedom to live every moment.',
