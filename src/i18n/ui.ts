@@ -22,14 +22,13 @@ export const ui = {
     'hero.scroll': 'Scroll',
 
     // ¿Qué es?
-    'quees.title': '¿Qué es para siempre?',
-    'quees.p1': 'En Para Siempre MX creemos que una boda no comienza el día del "sí, acepto". Comienza desde el instante en que dos personas deciden construir una vida juntas.',
+    'quees.title': '¿Quiénes somos?',
+    'quees.p1': 'En Para Siempre Planners creemos que una boda no comienza el día del "sí, acepto". Comienza desde el instante en que dos personas deciden construir una vida juntas.',
     'quees.p2': 'Cada decisión, cada emoción, cada detalle y cada momento vivido durante la planeación forman parte de una historia que merece disfrutarse con la misma intensidad que el gran día.',
     'quees.p3': 'Estamos aquí para acompañar ese camino, para convertir la incertidumbre en tranquilidad, el estrés en ilusión y los pendientes en la libertad de vivir cada instante.',
     'quees.p4': 'Porque cuando llegue el momento de caminar hacia el altar, queremos que lo único que importe sea mirarse a los ojos y disfrutar el inicio de su para siempre.',
 
     // Journey
-    'journey.title': 'your wedding journey',
     'journey.tag': 'WEDDING & EVENT PLANNING',
     'journey.col1': 'Cada boda comienza con una visión, y nuestro proceso de planificación está diseñado para transformar esa visión en una celebración impecablemente organizada. Nuestro enfoque combina planificación estratégica, diseño creativo y coordinación minuciosa para garantizar que cada elemento funcione en perfecta armonía.',
     'journey.col2': 'El proceso suele comenzar con una reunión inicial donde hablamos sobre tus ideas, prioridades e inspiración. A partir de ahí, desarrollamos un plan personalizado que describe las etapas clave de la planificación, incluyendo la selección del lugar, el desarrollo del concepto, la búsqueda de proveedores, la elaboración del presupuesto y la gestión del cronograma.',
@@ -37,25 +36,25 @@ export const ui = {
 
     // Design
     'design.p1': 'El diseño de tu boda aporta personalidad, emoción y ambiente a cada momento de la celebración. Desde la paleta de colores y los arreglos florales hasta la papelería, la decoración de las mesas y el diseño de iluminación, cada elemento contribuye a una narrativa visual coherente.',
-    'design.p2': 'Juntos, desarrollamos un concepto creativo que refleja vuestro estilo único como pareja. La inspiración puede provenir de la naturaleza, los viajes, la arquitectura o los recuerdos personales, y estas ideas se transforman en una estética refinada para todo el evento.',
-    'design.p3': 'Mediante paneles de inspiración, propuestas de diseño y la colaboración con proveedores creativos, nos aseguramos de que cada detalle visual sea intencional y armonioso, creando así un ambiente inolvidable tanto para vosotros como para sus invitados.',
+    'design.p2': 'Juntos, desarrollamos un concepto creativo que refleja su estilo único como pareja. La inspiración puede provenir de la naturaleza, los viajes, la arquitectura o los recuerdos personales, y estas ideas se transforman en una estética refinada para todo el evento.',
+    'design.p3': 'Mediante paneles de inspiración, propuestas de diseño y la colaboración con proveedores creativos, nos aseguramos de que cada detalle visual sea intencional y armonioso, creando así un ambiente inolvidable tanto para ustedes como para sus invitados.',
 
     // Memories
     'memories.top': 'Cuidamos los momentos que algún día se convertirán en sus',
-    'memories.bottom': 'sus Recuerdos Favoritos.',
+    'memories.bottom': 'Recuerdos Favoritos.',
 
     // Vision
-    'vision.title': 'Our Vision',
+    'vision.title': 'Nuestra visión',
     'vision.p1': 'Queremos formar parte de las historias que las personas recordarán con una sonrisa incluso muchos años después.',
     'vision.p2': 'Ser ese apoyo que les permitió vivir su boda con tranquilidad, emoción y la certeza de que cada detalle fue pensado con amor.',
     'vision.p3': 'Porque las bodas terminan al final del día, pero los recuerdos permanecen para siempre.',
 
     // Purpose
-    'purpose.title': 'Our Purpose',
+    'purpose.title': 'Nuestro propósito',
     'purpose.text': 'Crear espacios donde el amor pueda vivirse sin preocupaciones, acompañando a cada pareja para que disfrute plenamente el camino hacia uno de los días más importantes de su historia.',
 
     // Mission
-    'mission.title': 'Our Mission',
+    'mission.title': 'Nuestra misión',
     'mission.p1': 'Acompañar a cada pareja con sensibilidad, organización y dedicación para que la planeación de su boda sea tan inolvidable como el día en que celebren su amor.',
     'mission.p2': 'Nos encargamos de los detalles para que ellos puedan concentrarse en crear recuerdos, compartir emociones y vivir cada instante con quienes más aman.',
 
@@ -94,7 +93,7 @@ export const ui = {
 
     // Footer
     'footer.tag': 'Wedding experiences · México',
-    'footer.credits': '© Para Siempre MX',
+    'footer.credits': '© Para Siempre Planners',
   },
 
   en: {
@@ -106,14 +105,13 @@ export const ui = {
     'hero.scroll': 'Scroll',
 
     // What is?
-    'quees.title': 'What is Para Siempre?',
-    'quees.p1': 'At Para Siempre MX we believe a wedding doesn\'t start on the day of the "I do". It begins the moment two people decide to build a life together.',
+    'quees.title': 'Who are we?',
+    'quees.p1': 'At Para Siempre Planners we believe a wedding doesn\'t start on the day of the "I do". It begins the moment two people decide to build a life together.',
     'quees.p2': 'Every decision, every emotion, every detail and every moment lived during the planning is part of a story that deserves to be enjoyed with the same intensity as the big day.',
     'quees.p3': 'We are here to accompany that journey, to turn uncertainty into peace, stress into excitement and pending tasks into the freedom to live every moment.',
     'quees.p4': 'Because when the moment to walk down the aisle arrives, we want the only thing that matters to be looking into each other\'s eyes and enjoying the beginning of their forever.',
 
     // Journey
-    'journey.title': 'your wedding journey',
     'journey.tag': 'WEDDING & EVENT PLANNING',
     'journey.col1': 'Every wedding begins with a vision, and our planning process is designed to transform that vision into an impeccably organized celebration. Our approach combines strategic planning, creative design and meticulous coordination to ensure every element works in perfect harmony.',
     'journey.col2': 'The process usually begins with an initial meeting where we discuss your ideas, priorities and inspiration. From there, we develop a personalized plan that describes the key stages of planning, including venue selection, concept development, vendor sourcing, budget preparation and timeline management.',
@@ -126,7 +124,7 @@ export const ui = {
 
     // Memories
     'memories.top': 'We take care of the moments that will one day become their',
-    'memories.bottom': 'their Favorite Memories.',
+    'memories.bottom': 'Favorite Memories.',
 
     // Vision
     'vision.title': 'Our Vision',
@@ -178,7 +176,7 @@ export const ui = {
 
     // Footer
     'footer.tag': 'Wedding experiences · Mexico',
-    'footer.credits': '© Para Siempre MX',
+    'footer.credits': '© Para Siempre Planners',
   },
 } as const;
 
